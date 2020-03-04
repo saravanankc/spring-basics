@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- SARA: Used to scan all the other components using ComponentScan namespace for other Beans in the project -->
+    <context:component-scan base-package="com.kc.mylearnings.springbasics">
+    </context:component-scan>
+
+    <bean id="xmlJdbcConnection" class="com.kc.mylearnings.springbasics.basics.xml.XmlJdbcConnection">
+    </bean>
+
+    <bean id="xmlPersonDAO" class="com.kc.mylearnings.springbasics.basics.xml.XmlPersonDAO">
+        <!-- collaborators and configuration for this bean go here -->
+        <!--SARA: xmlJdbcConnection is a dependent object for XmlPersionDAO object and is wired using below attribute-->
+        <property name="xmlJdbcConnection" ref="xmlJdbcConnection">
+        </property>
+    </bean>
+
+    <!-- more bean definitions go here -->
+
+</beans>
